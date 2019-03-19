@@ -11,14 +11,22 @@ import '@babel/polyfill';
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
+
+import { BrowserRouter } from 'react-router-dom';
+import { ApolloProvider } from 'react-apollo';
+
+import apolloClient from './apolloClient';
+
+import App from './TApp';
+
 import FontFaceObserver from 'fontfaceobserver';
-import createHistory from 'history/createBrowserHistory';
+// import { Provider } from 'react-redux';
+// import { ConnectedRouter } from 'react-router-redux';
+import { createBrowserHistory } from 'history';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import App from 'containers/App';
+// import App from 'containers/App';
 
 // Load the favicon
 /* eslint-disable import/no-webpack-loader-syntax */
@@ -42,21 +50,30 @@ openSansObserver.load().then(() => {
 });
 
 // Create redux store with history
-const initialState = {};
-const history = createHistory();
-const store = configureStore(initialState, history);
+// const initialState = {};
+// const history = createBrowserHistory();
+// const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = () => {
+  // ReactDOM.render(
+  //   <Provider store={store}>
+  //     {/* <LanguageProvider messages={messages}> */}
+  //     <ConnectedRouter history={history}>
+  //       <App />
+  //     </ConnectedRouter>
+  //     {/* </LanguageProvider> */}
+  //   </Provider>,
+  //   MOUNT_NODE
+  // );
+
   ReactDOM.render(
-    <Provider store={store}>
-      {/* <LanguageProvider messages={messages}> */}
-      <ConnectedRouter history={history}>
+    // <ApolloProvider client={apolloClient}>
+      <BrowserRouter>
         <App />
-      </ConnectedRouter>
-      {/* </LanguageProvider> */}
-    </Provider>,
-    MOUNT_NODE
+      </BrowserRouter>
+    // </ApolloProvider>,
+    , MOUNT_NODE
   );
 };
 
@@ -64,7 +81,8 @@ if (module.hot) {
   // Hot reloadable React components and translation json files
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept(['containers/App'], () => {
+  // module.hot.accept(['containers/App'], () => {
+  module.hot.accept(['App'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render();
   });
