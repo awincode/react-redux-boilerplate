@@ -17,12 +17,12 @@ module.exports = {
   },
   moduleDirectories: ['node_modules', 'app'],
   moduleNameMapper: {
-    '.*\\.(css|less|styl|scss|sass)$': '<rootDir>/internals/mocks/cssModule.js',
+    '.*\\.(css|less|styl|scss|sass)$': '<rootDir>/config/mocks/cssModule.js',
     '.*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/internals/mocks/image.js',
+      '<rootDir>/config/mocks/image.js',
   },
-  setupTestFrameworkScriptFile: '<rootDir>/internals/testing/test-bundler.js',
-  setupFiles: ['raf/polyfill', '<rootDir>/internals/testing/enzyme-setup.js'],
+  setupTestFrameworkScriptFile: '<rootDir>/config/testing/test-bundler.js',
+  setupFiles: ['raf/polyfill', '<rootDir>/config/testing/enzyme-setup.js'],
   testRegex: 'tests/.*\\.test\\.js$',
   snapshotSerializers: ['enzyme-to-json/serializer'],
 };
