@@ -5,6 +5,10 @@
 const path = require('path');
 const webpack = require('webpack');
 
+// Remove this line once the following warning goes away (it was meant for webpack loader authors not users):
+// 'DeprecationWarning: loaderUtils.parseQuery() received a non-string value which can be problematic,
+// see https://github.com/webpack/loader-utils/issues/56 parseQuery() will be replaced with getOptions()
+// in the next major version of loader-utils.'
 process.noDeprecation = true;
 
 module.exports = (options) => ({
@@ -18,6 +22,7 @@ module.exports = (options) => ({
     },
     options.output
   ), // Merge with env dependent settings
+  optimization: options.optimization,  
   module: {
     rules: [
       {
@@ -45,8 +50,51 @@ module.exports = (options) => ({
         use: 'file-loader'
       },
       {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              // Inline files smaller than 10 kB
+              limit: 10 * 1024,
+              noquotes: true,
+            },
+          },
+        ],
+      },
+      {
         test: /\.(jpg|png|gif)$/,
-        use: 'file-loader'
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              // Inline files smaller than 10 kB
+              limit: 10 * 1024,
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                enabled: false,
+                // NOTE: mozjpeg is disabled as it causes errors in some Linux environments
+                // Try enabling it in your environment by switching the config to:
+                // enabled: true,
+                // progressive: true,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              optipng: {
+                optimizationLevel: 7,
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.html$/,
@@ -64,10 +112,10 @@ module.exports = (options) => ({
     ]
   },
   plugins: options.plugins.concat([
-    new webpack.ProvidePlugin({
-      // make fetch available
-      fetch: 'exports-loader?self.fetch!whatwg-fetch'
-    }),
+    // new webpack.ProvidePlugin({
+    //   // make fetch available
+    //   fetch: 'exports-loader?self.fetch!whatwg-fetch'
+    // }),
 
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
     // inside your code for any environment checks; UglifyJS will automatically
@@ -79,18 +127,20 @@ module.exports = (options) => ({
     })
   ]),
   resolve: {
-    modules: ['app', 'node_modules'],
-    extensions: ['.js', '.jsx', '.scss', '.react.js'],
+    modules: ['node_modules', 'app'],
+    extensions: ['.js', '.jsx', '.react.js'],
+    // extensions: ['.js', '.jsx', '.scss', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main']
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
   performance: options.performance || {},
-  optimization: {
-    namedModules: true,
-    splitChunks: {
-      name: 'vendor',
-      minChunks: 2
-    }
-  }
+
+  // optimization: {
+  //   namedModules: true,
+  //   splitChunks: {
+  //     name: 'vendor',
+  //     minChunks: 2
+  //   }
+  // }
 });
