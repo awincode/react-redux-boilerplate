@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from './TNavigation';
+import Navigation from './Navigation';
 
 const Sidebar = () => {
   return (

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Sidebar from './TSidebar';
-import Home from './THome';
-import appConfig from './tAppConfig';
+import Sidebar from './Sidebar';
+import Home from './Home';
+import appConfig from '../config/app';
 
 const renderModulePage = (module) => {
   const Component = module.template.type;

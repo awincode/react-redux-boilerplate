@@ -17,13 +17,16 @@ import { ApolloProvider } from 'react-apollo';
 
 import apolloClient from './apolloClient';
 
-import App from './TApp';
+// import App from './components/App';
+
+import App from './components/App';
 
 import FontFaceObserver from 'fontfaceobserver';
 // import { Provider } from 'react-redux';
 // import { ConnectedRouter } from 'react-router-redux';
 import { createBrowserHistory } from 'history';
 import 'sanitize.css/sanitize.css';
+
 
 // Import root app
 // import App from 'containers/App';

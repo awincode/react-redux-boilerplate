@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Loading from '../aw_atoms/Loading';
-import Error from '../aw_atoms/Error';
+import Loading from '../atoms/Loading';
+import Error from '../atoms/Error';
 
 /**
  * A standard Apollo Query Loader with predefined loading and error handling

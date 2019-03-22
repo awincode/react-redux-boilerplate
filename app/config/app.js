@@ -1,7 +1,7 @@
 import React from 'react';
 
-import News from './TNews';
-import Used from './TUsed';
+import News from '../components/News';
+import Used from '../components/Used';
 
 const app = {
   modules: {

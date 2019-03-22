@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import appConfig from './tAppConfig';
+import appConfig from '../config/app';
 
 
 const Dividers = (props) => {

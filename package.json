@@ -59,7 +59,7 @@
     "redux-immutable": "4.0.0",
     "reselect": "4.0.0",
     "sanitize.css": "8.0.0",
-    "unfetch": "^4.1.0",
+    "unfetch": "4.1.0",
     "warning": "4.0.3",
     "whatwg-fetch": "3.0.0"
   },
