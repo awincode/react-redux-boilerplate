@@ -23,7 +23,10 @@
     "pretest": "npm run test:clean && npm run lint",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:clean": "rimraf ./coverage",
-    "test:watch": "cross-env NODE_ENV=test jest --watchAll"
+    "test:watch": "cross-env NODE_ENV=test jest --watchAll",
+    "css-build": "node-sass --omit-source-map-url app/styles/light.scss app/css/light.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start:css": "npm run css-watch"
   },
   "dependencies": {
     "@babel/polyfill": "7.2.5",
@@ -34,6 +37,7 @@
     "apollo-link-http": "^1.5.14",
     "apollo-link-state": "^0.4.2",
     "apollo-server": "2.4.8",
+    "bulma": "^0.7.4",
     "chalk": "2.4.2",
     "compression": "1.7.4",
     "connected-react-router": "6.3.2",

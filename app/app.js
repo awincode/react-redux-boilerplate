@@ -6,7 +6,7 @@
  */
 
 // Needed for redux-saga es6 generator support
-import '@babel/polyfill';
+// import '@babel/polyfill';
 
 // Import all the third party stuff
 import React from 'react';
@@ -25,21 +25,22 @@ import FontFaceObserver from 'fontfaceobserver';
 // import { Provider } from 'react-redux';
 // import { ConnectedRouter } from 'react-router-redux';
 import { createBrowserHistory } from 'history';
-import 'sanitize.css/sanitize.css';
+// import 'sanitize.css/sanitize.css';
 
+import 'bulma/css/bulma.css';
 
 // Import root app
 // import App from 'containers/App';
 
 // Load the favicon
 /* eslint-disable import/no-webpack-loader-syntax */
-import '!file-loader?name=[name].[ext]!./images/favicon.ico';
+// import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 /* eslint-enable import/no-webpack-loader-syntax */
 
 // Import CSS reset and Global Styles
-import 'styles/theme.scss';
+// import 'styles/theme.scss';
 
-import configureStore from './configureStore';
+// import configureStore from './configureStore';
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
@@ -85,7 +86,7 @@ if (module.hot) {
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
   // module.hot.accept(['containers/App'], () => {
-  module.hot.accept(['App'], () => {
+  module.hot.accept(['components/App'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render();
   });

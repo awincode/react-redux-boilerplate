@@ -15,25 +15,38 @@ const Layout = (props) => {
 
   return (
     <>
-      <div>
-        <div id='sidebar'>
-          <Sidebar />
+      <section className='section'>
+        <div className='level'>
+          <div id='sidebar' className='level-left'>
+            <Sidebar />
+          </div>
+          <div id='main' className='level-right'>
+            <div className='container'>
+              <Switch>
+                <Route exact path='/' render={() => <Home appStatus={appStatus} />} />
+                {Object.keys(modules).map(module =>
+                  <Route
+                    key={module}
+                    path={`/${module}`}
+                    render={() => renderModulePage(modules[module])}
+                  />
+                )
+                }
+              </Switch>
+            </div>
+          </div>
         </div>
-      </div>
-      <div id='main'>
-        <Switch>
-          <Route exact path='/' render={() => <Home appStatus={appStatus} />} />
-          { Object.keys(modules).map(module => 
-              <Route 
-                key={module}
-                path={`/${module}`}
-                render={() => renderModulePage(modules[module])}
-              />
-            )
-          }
-        </Switch>
-      </div>
+      </section>
+      <footer className='footer'>
+        <div className='content has-text-centered'>
+          <p>
+            A basic React Boilerplate
+          </p>
+        </div>
+
+      </footer>
     </>
+
   )
 };
 

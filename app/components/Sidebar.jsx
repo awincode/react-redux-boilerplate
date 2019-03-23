@@ -4,7 +4,7 @@ import Navigation from './Navigation';
 const Sidebar = () => {
   return (
     <div>
-      <h1>DEMO</h1>
+      <h1 className='title'>DEMO</h1>
       <Navigation />
     </div>
   )
