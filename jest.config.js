@@ -21,7 +21,7 @@ module.exports = {
     '.*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/config/mocks/image.js',
   },
-  setupTestFrameworkScriptFile: '<rootDir>/config/testing/test-bundler.js',
+  setupFilesAfterEnv: ['<rootDir>/config/testing/test-bundler.js'],
   setupFiles: ['raf/polyfill', '<rootDir>/config/testing/enzyme-setup.js'],
   testRegex: 'tests/.*\\.test\\.js$',
   snapshotSerializers: ['enzyme-to-json/serializer'],
