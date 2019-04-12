@@ -15,19 +15,19 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 
-import apolloClient from './apolloClient';
-
-// import App from './components/App';
+import { createBrowserHistory } from 'history';
+import FontFaceObserver from 'fontfaceobserver';
 
 import App from './components/App';
 
-import FontFaceObserver from 'fontfaceobserver';
 // import { Provider } from 'react-redux';
 // import { ConnectedRouter } from 'react-router-redux';
-import { createBrowserHistory } from 'history';
 // import 'sanitize.css/sanitize.css';
 
-import 'bulma/css/bulma.css';
+import apolloClient from './apolloClient';
+
+require('./styles.scss');
+// import 'bulma/css/bulma.css';
 
 // Import root app
 // import App from 'containers/App';
@@ -47,11 +47,14 @@ import 'bulma/css/bulma.css';
 const openSansObserver = new FontFaceObserver('Open Sans', {});
 
 // When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
-  document.body.classList.add('fontLoaded');
-}, () => {
-  document.body.classList.remove('fontLoaded');
-});
+openSansObserver.load().then(
+  () => {
+    document.body.classList.add('fontLoaded');
+  },
+  () => {
+    document.body.classList.remove('fontLoaded');
+  },
+);
 
 // Create redux store with history
 // const initialState = {};
@@ -73,11 +76,11 @@ const render = () => {
 
   ReactDOM.render(
     // <ApolloProvider client={apolloClient}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
     // </ApolloProvider>,
-    , MOUNT_NODE
+    MOUNT_NODE,
   );
 };
 

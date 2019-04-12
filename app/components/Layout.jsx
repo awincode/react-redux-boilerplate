@@ -5,11 +5,12 @@ import Sidebar from './Sidebar';
 import Home from './Home';
 import appConfig from '../config/app';
 
-const renderModulePage = (module) => {
+const renderModulePage = module => {
   const Component = module.template.type;
-  return (<Component />);
-}
-const Layout = (props) => {
+  return <Component />;
+};
+
+const Layout = props => {
   const [appStatus, useAppStatus] = useState(0);
   const { modules } = appConfig;
 
@@ -23,15 +24,18 @@ const Layout = (props) => {
           <div id='main' className='level-right'>
             <div className='container'>
               <Switch>
-                <Route exact path='/' render={() => <Home appStatus={appStatus} />} />
-                {Object.keys(modules).map(module =>
+                <Route
+                  exact
+                  path='/'
+                  render={() => <Home appStatus={appStatus} />}
+                />
+                {Object.keys(modules).map(module => (
                   <Route
                     key={module}
                     path={`/${module}`}
                     render={() => renderModulePage(modules[module])}
                   />
-                )
-                }
+                ))}
               </Switch>
             </div>
           </div>
@@ -39,15 +43,11 @@ const Layout = (props) => {
       </section>
       <footer className='footer'>
         <div className='content has-text-centered'>
-          <p>
-            A basic React Boilerplate
-          </p>
+          <p>A basic React Boilerplate</p>
         </div>
-
       </footer>
     </>
-
-  )
+  );
 };
 
 export default Layout;

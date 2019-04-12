@@ -5,24 +5,27 @@
 const path = require('path');
 const webpack = require('webpack');
 
+// added for Bulma Sass file extraction https://bulma.io/documentation/customize/with-webpack/
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 // Remove this line once the following warning goes away (it was meant for webpack loader authors not users):
 // 'DeprecationWarning: loaderUtils.parseQuery() received a non-string value which can be problematic,
 // see https://github.com/webpack/loader-utils/issues/56 parseQuery() will be replaced with getOptions()
 // in the next major version of loader-utils.'
 process.noDeprecation = true;
 
-module.exports = (options) => ({
+module.exports = options => ({
   mode: options.mode,
   entry: options.entry,
   output: Object.assign(
     {
       // Compile into js/build.js
       path: path.resolve(process.cwd(), 'build'),
-      publicPath: '/'
+      publicPath: '/',
     },
-    options.output
+    options.output,
   ), // Merge with env dependent settings
-  optimization: options.optimization,  
+  optimization: options.optimization,
   module: {
     rules: [
       {
@@ -30,24 +33,28 @@ module.exports = (options) => ({
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: options.babelQuery
-        }
+          options: options.babelQuery,
+        },
       },
       {
         // Preprocess our own .scss files
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader'],
+        }),
+        // use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         // Preprocess 3rd party .css files located in node_modules
         test: /\.css$/,
         include: /node_modules/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(eot|svg|otf|ttf|woff|woff2)$/,
-        use: 'file-loader'
+        use: 'file-loader',
       },
       {
         test: /\.svg$/,
@@ -98,18 +105,18 @@ module.exports = (options) => ({
       },
       {
         test: /\.html$/,
-        use: 'html-loader'
+        use: 'html-loader',
       },
       {
         test: /\.(mp4|webm)$/,
         use: {
           loader: 'url-loader',
           options: {
-            limit: 10000
-          }
-        }
-      }
-    ]
+            limit: 10000,
+          },
+        },
+      },
+    ],
   },
   plugins: options.plugins.concat([
     // new webpack.ProvidePlugin({
@@ -122,15 +129,16 @@ module.exports = (options) => ({
     // drop any unreachable code.
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      }
-    })
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
+    }),
+    new ExtractTextPlugin('css/styles.css'),
   ]),
   resolve: {
     modules: ['node_modules', 'app'],
     extensions: ['.js', '.jsx', '.react.js'],
     // extensions: ['.js', '.jsx', '.scss', '.react.js'],
-    mainFields: ['browser', 'jsnext:main', 'main']
+    mainFields: ['browser', 'jsnext:main', 'main'],
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
