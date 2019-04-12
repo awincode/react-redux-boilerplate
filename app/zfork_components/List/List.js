@@ -24,7 +24,7 @@ const List = ({ component, items }) => {
 };
 
 List.propTypes = {
-  component: PropTypes.func.isRequired,
+  component: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
   items: PropTypes.array,
 };
 
