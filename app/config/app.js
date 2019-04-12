@@ -6,27 +6,26 @@ import Used from '../components/Used';
 const app = {
   modules: {
     news: {
-      template: <News />
+      template: <News />,
     },
     used: {
-      template: <Used />
-    }
+      template: <Used />,
+    },
   },
   navigation: {
     Home: {
       label: 'HOME',
-      path: '/'
+      path: '/',
     },
     News: {
       label: 'NEWS',
-      path: '/news'
+      path: '/news',
     },
     Used: {
       label: 'USED',
-      path: '/used'
-    }
-  }
-
+      path: '/used',
+    },
+  },
 };
 
 export default app;

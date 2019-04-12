@@ -9,10 +9,7 @@ import fetch from 'unfetch';
 const GRAPHQL_SERVER_URL = '';
 const cache = new InMemoryCache();
 
-const errorLink = onError(({
-  graphQLErrors,
-  networkError
-}) => {
+const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     // do something with graphql errors
   }
@@ -23,28 +20,29 @@ const errorLink = onError(({
 
 const httpLink = new HttpLink({
   uri: GRAPHQL_SERVER_URL,
-  fetch
+  fetch,
 });
 
 const withLocalState = withClientState({
   defaults: {
-    isConnected: true
+    isConnected: true,
   },
   resolvers: {
     Mutation: {
+      // eslint-disable-next-line no-shadow
       updateNetworkStatus: (_, { isConnected }, { cache }) => {
-        cache.writeData({ data: { isConnected }});
+        cache.writeData({ data: { isConnected } });
         return null;
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 const link = ApolloLink.from([errorLink, withLocalState, httpLink]);
 
 const apolloClient = new ApolloClient({
   link,
-  cache
+  cache,
 });
 
 export default apolloClient;

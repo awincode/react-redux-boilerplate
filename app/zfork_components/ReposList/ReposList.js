@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import List from 'components/List';
-import ListItem from 'components/ListItem';
-import LoadingIndicator from 'components/LoadingIndicator';
-import RepoListItem from 'containers/RepoListItem';
+import List from 'zfork_components/List';
+import ListItem from 'zfork_components/ListItem';
+import LoadingIndicator from 'zfork_components/LoadingIndicator';
+import RepoListItem from 'zfork_containers/RepoListItem';
 
 const ReposList = ({ loading, error, repos }) => {
   if (loading) {
@@ -13,7 +13,7 @@ const ReposList = ({ loading, error, repos }) => {
 
   if (error !== false) {
     const ErrorComponent = () => (
-      <ListItem item={'Something went wrong, please try again!'} />
+      <ListItem item='Something went wrong, please try again!' />
     );
     return <List component={ErrorComponent} />;
   }
@@ -28,7 +28,7 @@ const ReposList = ({ loading, error, repos }) => {
 ReposList.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.any,
-  repos: PropTypes.any
+  repos: PropTypes.any,
 };
 
 export default ReposList;

@@ -4,23 +4,21 @@ import './style.scss';
 
 const List = ({ component, items }) => {
   const ComponentToRender = component;
-  let content = (<div></div>);
+  let content = <div />;
 
   // If we have items, render them
   if (items) {
-    content = items.map((item) => (
+    content = items.map(item => (
       <ComponentToRender key={`item-${item.id}`} item={item} />
     ));
   } else {
     // Otherwise render a single component
-    content = (<ComponentToRender />);
+    content = <ComponentToRender />;
   }
 
   return (
-    <div className="list-wrapper">
-      <ul>
-        {content}
-      </ul>
+    <div className='list-wrapper'>
+      <ul>{content}</ul>
     </div>
   );
 };

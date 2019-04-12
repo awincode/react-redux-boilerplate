@@ -7,7 +7,7 @@ describe('homeReducer', () => {
   let state;
   beforeEach(() => {
     state = fromJS({
-      username: ''
+      username: '',
     });
   });
 

@@ -13,9 +13,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { BrowserRouter } from 'react-router-dom';
-import { ApolloProvider } from 'react-apollo';
+// import { ApolloProvider } from 'react-apollo';
 
-import { createBrowserHistory } from 'history';
+// import { createBrowserHistory } from 'history';
 import FontFaceObserver from 'fontfaceobserver';
 
 import App from './components/App';
@@ -24,7 +24,7 @@ import App from './components/App';
 // import { ConnectedRouter } from 'react-router-redux';
 // import 'sanitize.css/sanitize.css';
 
-import apolloClient from './apolloClient';
+// import apolloClient from './apolloClient';
 
 require('./styles.scss');
 // import 'bulma/css/bulma.css';
