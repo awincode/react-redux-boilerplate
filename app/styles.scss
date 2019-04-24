@@ -11,6 +11,24 @@
 
 $body-background-color: $orange;
 $footer-background-color: $code;
+$footer-padding: 1.5rem;
+
+
+/**
+ * Sticky footer
+ * https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
+ */
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.body {
+  flex: 1;
+}
+
 
 @import '~bulma/bulma';
 

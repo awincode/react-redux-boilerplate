@@ -17,7 +17,7 @@ const Layout = props => {
 
   return (
     <>
-      <section className='section'>
+      <section className='body body--full section'>
         <div className='level'>
           <div id='sidebar' className='level-left'>
             <Sidebar />
