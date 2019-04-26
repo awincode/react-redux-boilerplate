@@ -18,28 +18,26 @@ const Layout = props => {
   return (
     <>
       <section className='body body--full section'>
-        <div className='level'>
-          <div id='sidebar' className='level-left'>
+        <div className='columns'>
+          <div id='sidebar' className='column is-narrow'>
             <Sidebar />
           </div>
-          <div id='main' className='level-right'>
-            <div className='level-item'>
-              <div className='container'>
-                <Switch>
+          <div id='main' className='column'>
+            <div className='wrapper'>
+              <Switch>
+                <Route
+                  exact
+                  path='/'
+                  render={() => <Home appStatus={appStatus} />}
+                />
+                {Object.keys(modules).map(module => (
                   <Route
-                    exact
-                    path='/'
-                    render={() => <Home appStatus={appStatus} />}
+                    key={module}
+                    path={`/${module}`}
+                    render={() => renderModulePage(modules[module])}
                   />
-                  {Object.keys(modules).map(module => (
-                    <Route
-                      key={module}
-                      path={`/${module}`}
-                      render={() => renderModulePage(modules[module])}
-                    />
-                  ))}
-                </Switch>
-              </div>
+                ))}
+              </Switch>
             </div>
           </div>
         </div>

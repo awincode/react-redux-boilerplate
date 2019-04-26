@@ -13,7 +13,7 @@ $body-background-color: $orange;
 $footer-background-color: $code;
 $footer-padding: 1.5rem;
 
-$section-padding: 1.5rem;
+$section-padding: 0;
 
 /**
  * Sticky footer
@@ -30,6 +30,22 @@ $section-padding: 1.5rem;
   flex: 1;
 }
 
+#sidebar {
+  background: aliceblue;
+  height: 100vh;
+
+  .wrapper {
+    padding: .5rem 2rem;
+  }
+}
+
+#main {
+  background: azure;
+
+  .wrapper {
+    padding: .5rem 2rem;
+  }
+}
 
 @import '~bulma/bulma';
 
