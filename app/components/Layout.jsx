@@ -23,21 +23,23 @@ const Layout = props => {
             <Sidebar />
           </div>
           <div id='main' className='level-right'>
-            <div className='container'>
-              <Switch>
-                <Route
-                  exact
-                  path='/'
-                  render={() => <Home appStatus={appStatus} />}
-                />
-                {Object.keys(modules).map(module => (
+            <div className='level-item'>
+              <div className='container'>
+                <Switch>
                   <Route
-                    key={module}
-                    path={`/${module}`}
-                    render={() => renderModulePage(modules[module])}
+                    exact
+                    path='/'
+                    render={() => <Home appStatus={appStatus} />}
                   />
-                ))}
-              </Switch>
+                  {Object.keys(modules).map(module => (
+                    <Route
+                      key={module}
+                      path={`/${module}`}
+                      render={() => renderModulePage(modules[module])}
+                    />
+                  ))}
+                </Switch>
+              </div>
             </div>
           </div>
         </div>

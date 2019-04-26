@@ -3,11 +3,13 @@ import Navigation from './Navigation';
 
 const Sidebar = () => {
   return (
-    <div>
-      <h1 className='title'>DEMO</h1>
-      <Navigation />
+    <div className='level-item'>
+      <div className='container'>
+        <h1 className='title'>DEMO</h1>
+        <Navigation />
+      </div>
     </div>
-  )
+  );
 };
 
 export default Sidebar;
